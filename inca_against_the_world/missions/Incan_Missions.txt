@@ -1,0 +1,398 @@
+inc_mission_group = {
+	slot = 1
+	generic = no
+	ai = yes
+	potential = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	war_preparations = {
+		icon = mission_assemble_an_army
+		required_missions = { }
+		position = 1
+		completed_by = 1450.1.1
+		
+		provinces_to_highlight = {
+			region = peru_region
+			region = upper_peru_region
+			NOT = { owned_by = ROOT }
+		}
+		
+		trigger = {
+			army_size_percentage = 1
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = inca_continuous_preparation
+				duration = -1
+			}
+			add_country_modifier = {
+				name = inca_continuous_annexation
+				duration = -1
+			}
+			add_adm_power = 200
+		}
+	}
+
+	expansion_beyond_the_horizon = {
+		icon = mission_sw_yucca_plants
+		required_missions = { war_preparations stabilize_the_capital }
+		position = 2
+
+		trigger = {
+			exists = INC
+			knows_country = TAI
+		}
+
+		effect = {
+			add_country_modifier = {
+				name = inca_set_migration_permissions
+				duration = -1
+			}
+		}
+	}
+
+	vast_lands = {
+		icon = mission_sw_against_the_desert
+		required_missions = { expansion_beyond_the_horizon }
+		position = 3
+
+		trigger = {
+			knows_country = TPA
+		}
+
+		effect = {
+			add_country_modifier = {
+				name = inca_establish_migration_legislation
+				duration = -1
+			}
+		}
+	}
+}
+
+inc_mission_group_2 = {
+	slot = 2
+	generic = no
+	ai = yes
+	potential = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	reform_society = {
+		icon = mission_settlers_north_america
+		required_missions = {  }
+		position = 1
+		
+		trigger = {
+			capital_scope = {
+				feudalism = 100
+			}
+		}
+		
+		effect = {
+			capital_scope = {
+				change_religion = reformed
+			}
+			add_country_modifier = {
+				name = inca_continuous_evangelism
+				duration = -1
+			}
+			add_dip_power = 500
+			add_adm_power = 500
+			add_mil_power = 500
+			add_treasury = 100
+		}
+	}
+	
+	stabilize_the_capital = {
+		icon = mission_scholar_officials
+		required_missions = { reform_society war_preparations }
+		position = 2
+
+		trigger = {
+			has_matching_religion = reformed
+		}
+		
+		effect = {
+			add_stability = 6
+			add_prestige = 140
+		}
+	}
+	
+	state_control = {
+		icon = mission_high_income
+		required_missions = { stabilize_the_capital expansion_beyond_the_horizon }
+		position = 3
+		
+		trigger = {
+			stability = 1
+			crown_land_share = estate_nobles
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = inca_state_control
+				duration = -1
+			}
+		}
+	}
+}
+
+inc_mission_group_3 = {
+	slot = 3
+	generic = no
+	ai = yes
+	potential = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	develop_the_capital = {
+		icon = mission_colonial
+		required_missions = {  }
+		position = 1
+		
+		trigger = {
+			has_advisor = yes
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = inca_continuous_development
+				duration = -1
+			}
+			add_country_modifier = {
+				name = inca_rotation_of_advisors
+				duration = -1
+			}
+			add_adm_power = 900
+			add_dip_power = 900
+			add_mil_power = 900
+		}
+	}
+	
+	scholars_association = {
+		icon = mission_alliances
+		required_missions = { develop_the_capital stabilize_the_capital }
+		position = 2
+		
+		trigger = {
+			has_advisor = yes
+			treasury = 100
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = inca_scholars_association
+				duration = -1
+			}
+			change_government_reform_progress = 4000
+		}
+	}
+	
+	prosperous_liberty = {
+		icon = mission_dominate_home_trade_node
+		required_missions = { scholars_association production_for_war }
+		position = 3
+		
+		trigger = {
+			stability = 3
+			government = republic
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = inca_prosperous_liberty
+				duration = -1
+			}
+		}
+	}
+	
+	extensive_reform = {
+		icon = mission_asian_trader
+		required_missions = { prosperous_liberty state_control vast_lands }
+		position = 4
+		
+		trigger = {
+			stability = 3
+		}
+		
+		effect = {
+			change_government_reform_progress = 20000
+			add_country_modifier = {
+				name = inca_extensive_reform
+				duration = -1
+			}
+		}
+	}
+}
+
+inc_mission_group_4 = {
+	slot = 4
+	generic = no
+	ai = yes
+	potential = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	continuous_investment = {
+		icon = mission_early_game_buildings
+		required_missions = {  }
+		position = 1
+		
+		trigger = {
+			has_institution = feudalism
+			is_bankrupt = no
+		}
+		
+		effect = {
+			add_treasury = 5000
+			add_country_modifier = {
+				name = inca_continuous_investment
+				duration = -1
+			}
+			capital_scope = {
+    			change_trade_goods = paper
+			}
+		}
+	}
+	
+	production_for_war = {
+		icon = mission_iroquois_warriors
+		required_missions = { continuous_investment scholars_association }
+		position = 2
+		
+		trigger = {
+			has_institution = feudalism
+			is_bankrupt = no
+			manpower_percentage = 0.6
+		}
+		
+		effect = {
+			add_treasury = 1500
+			804 = {
+				change_trade_goods = iron
+			}
+			810 = {
+				change_trade_goods = iron
+			}
+			808 = {
+				change_trade_goods = iron
+			}
+			795 = {
+				change_trade_goods = iron
+			}
+			2946 = {
+				change_trade_goods = iron
+			}
+			2941 = {
+				change_trade_goods = iron
+			}
+		}
+	}
+	
+	long_term_policies = {
+		icon = mission_se_medicine_wheel
+		required_missions = { vast_lands state_control production_for_war }
+		position = 3
+		
+		trigger = {
+			
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = inca_long_term_policies
+				duration = -1
+			}
+			change_technology_group = high_american
+			change_unit_type = high_american
+		}
+	}
+}
+
+inc_mission_group_5 = {
+	slot = 5
+	generic = no
+	ai = yes
+	potential = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	reforming_the_army = {
+		icon = mission_cossack_cavalry
+		required_missions = {  }
+		position = 1
+		
+		trigger = {
+			army_tradition = 20
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = inca_army_reform
+				duration = -1
+			}
+		}
+	}
+	
+	reform_the_navy = {
+		icon = mission_establish_high_seas_navy
+		required_missions = { reforming_the_army }
+		position = 2
+		
+		trigger = {
+			num_of_ports = 10
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = inca_navy_reform
+				duration = -1
+			}
+		}
+	}
+	
+	facilitate_the_navy = {
+		icon = mission_sea_battles
+		required_missions = { reform_the_navy }
+		position = 3
+		
+		trigger = {
+			num_of_ports = 10
+			navy_size = 10
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = inca_facilitate_the_navy
+				duration = -1
+			}
+		}
+	}
+}
