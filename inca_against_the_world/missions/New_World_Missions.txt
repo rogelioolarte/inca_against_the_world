@@ -135,7 +135,7 @@ new_world_natives_missions_no_reg = {
 
 new_world_natives_missions_slot1 = {
 	slot = 1
-	generic = no
+	generic = yes
 	ai = no
 	potential = {
 		OR = {
@@ -152,10 +152,6 @@ new_world_natives_missions_slot1 = {
 					technology_group = north_american
 					technology_group = south_american
 					technology_group = mesoamerican
-				}
-				NOT = {
-					tag = CSU
-					tag = INC
 				}
 			}
 			
@@ -259,7 +255,7 @@ new_world_natives_missions_slot1 = {
 	
 new_world_natives_missions_slot2 = {
 	slot = 2
-	generic = no
+	generic = yes
 	ai = yes
 	potential = {
 		capital_scope = {
@@ -274,10 +270,6 @@ new_world_natives_missions_slot2 = {
 			technology_group = north_american
 			technology_group = south_american
 			technology_group = mesoamerican
-		}
-		NOT = {
-			tag = CSU
-			tag = INC
 		}
 	}
 	native_dev_capital = {
