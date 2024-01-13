@@ -11,6 +11,10 @@ country_decisions = {
 				ai = no
 				is_playing_custom_nation = no
 			}
+			OR = {
+				is_free_or_tributary_trigger = yes
+				ai = no
+			}
 			NOT = { tag = PAP }
 			NOT = { tag = HLR }
 			NOT = { tag = ROM }
@@ -89,7 +93,6 @@ country_decisions = {
 				set_country_flag = INC_used_to_be_CHM
 			}
 			remove_non_electors_emperors_from_empire_effect = yes
-
 			if = {
 				limit = {
 					government = native
@@ -107,15 +110,12 @@ country_decisions = {
 					limit = {
 						is_tribal = yes
 					}
-					change_government_to_monarchy = yes
+					change_government = monarchy
 					#set_legacy_government = despotic_monarchy
 				}
 			}
 			change_tag = INC
-			swap_non_generic_missions = yes
-			hidden_effect = {
-				country_event = { id = paradox_or_mod_missions_events.2 }
-			}
+			on_change_tag_effect = yes
 			peru_region = {
 				limit = {
 					NOT = { owned_by = ROOT }
@@ -126,49 +126,28 @@ country_decisions = {
 			upper_peru_region = {
 				limit = {
 					NOT = { owned_by = ROOT }
-					NOT = { area = moxos_area }
-					NOT = { area = beni_area }
-					NOT = { area = chaco_area }
 				}
 				add_permanent_claim = INC
 			}
-			southern_chile_area = {
+			la_plata_region = {
 				limit = {
 					NOT = { owned_by = ROOT }
 				}
 				add_permanent_claim = INC
 			}
-			central_chile_area = {
+			colombia_region = {
 				limit = {
 					NOT = { owned_by = ROOT }
 				}
 				add_permanent_claim = INC
 			}
-			northern_chile_area = {
+			brazil_region = {
 				limit = {
 					NOT = { owned_by = ROOT }
 				}
 				add_permanent_claim = INC
 			}
-			tucuman_area = {
-				limit = {
-					NOT = { owned_by = ROOT }
-				}
-				add_permanent_claim = INC
-			}
-			nehuenken_area = {
-				limit = {
-					NOT = { owned_by = ROOT }
-				}
-				add_permanent_claim = INC
-			}
-			cuyo_area = {
-				limit = {
-					NOT = { owned_by = ROOT }
-				}
-				add_permanent_claim = INC
-			}
-			add_prestige_or_monarch_power = { amount = 50 }
+			add_prestige = 25
 			if = {
 				limit = {
 					has_custom_ideas = no

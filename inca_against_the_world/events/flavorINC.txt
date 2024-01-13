@@ -18,6 +18,7 @@ normal_or_historical_nations = yes
 #	fire_only_once = yes
 #	
 #	trigger = {
+#		NOT = { mission_completed = reform_society }
 #		tag = INC
 #		is_year = 1500 
 #		NOT = { is_year = 1600 }
@@ -260,7 +261,7 @@ country_event = {
 	trigger = {
 		tag = INC
 		num_of_cities = 8
-		religion = inti
+		NOT = { mission_completed = reform_society }
 	}
 	
 	mean_time_to_happen = {
@@ -305,7 +306,7 @@ country_event = {
 		owns = 812 #Chanchan
 		owns = 2821 #Piwra
 		owns = 2822 #Tucume
-		NOT = { mission_completed = develop_the_capital }
+		NOT = { mission_completed = reform_society }
 	}
 	
 	mean_time_to_happen = {
@@ -357,7 +358,7 @@ country_event = {
 			2821 = { culture = chimuan } #Piwra
 			2822 = { culture = chimuan } #Tucume
 		}
-		NOT = { mission_completed = develop_the_capital }
+		NOT = { mission_completed = reform_society }
 	}
 	
 	immediate = {
@@ -445,6 +446,7 @@ country_event = {
 				controlled_by = REB
 			}
 		}
+		NOT = { mission_completed = reform_society }
 	}
 	
 	mean_time_to_happen = {
@@ -580,7 +582,7 @@ country_event = {
 			has_province_modifier = inc_smallpox_outbreak
 		}
 		has_regency = no
-		NOT = { mission_completed = develop_the_capital }
+		NOT = { mission_completed = reform_society }
 	}
 	
 	mean_time_to_happen = {
@@ -686,6 +688,7 @@ country_event = {
 			has_country_flag = inc_civil_war_support_huascar
 			has_country_flag = inc_civil_war_support_atahualpa
 		}
+		NOT = { mission_completed = reform_society }
 	}
 	
 	mean_time_to_happen = {
@@ -731,6 +734,7 @@ country_event = {
 				controlled_by = REB
 			}
 		}
+		NOT = { mission_completed = reform_society }
 	}
 	
 	mean_time_to_happen = {
@@ -770,8 +774,8 @@ country_event = {
 				capital_scope = { controlled_by = ROOT }
 				has_regency = no
 			}
-			NOT = { mission_completed = develop_the_capital }
 		}
+		NOT = { mission_completed = reform_society }
 	}
 	
 	mean_time_to_happen = {
@@ -980,7 +984,7 @@ country_event = {
 		has_heir = yes
 		has_regency = no
 		heir_age = 15
-		NOT = { mission_completed = develop_the_capital }
+		NOT = { mission_completed = reform_society }
 	}
 	
 	mean_time_to_happen = {
@@ -1012,6 +1016,7 @@ country_event = {
 		tag = INC
 		has_heir_flag = inc_pacific_exploration
 		had_heir_flag = { flag = inc_pacific_exploration days = 270 }
+		NOT = { mission_completed = reform_society }
 	}
 	
 	immediate = {
@@ -1051,6 +1056,7 @@ country_event = {
 		tag = INC
 		has_heir_flag = inc_pacific_exploration
 		had_heir_flag = { flag = inc_pacific_exploration days = 270 }
+		NOT = { mission_completed = reform_society }
 	}
 	
 	immediate = {
@@ -1128,6 +1134,7 @@ country_event = {
 		809 = {
 			has_province_modifier = inti_pachamac_oracle
 		}
+		NOT = { mission_completed = reform_society }
 	}
 	
 	mean_time_to_happen = {
@@ -1172,19 +1179,18 @@ country_event = {
 	}
 	
 }
-
-#######################################################
+##############################################################
 # Flavor Events for the Incas with Mod Against the World
 #
 # Scripted by Sapa Inca Pachacutec
-#######################################################
+##############################################################
 
 # First event to change missions for Cuzco
 country_event = {
 	id = flavor_inc.30
 	title = flavor_inc.30.t
 	desc = flavor_inc.30.d
-	picture = ADVISOR_eventPicture
+	picture = KING_SICK_IN_BED_eventPicture
 	
 	fire_only_once = yes
 	
@@ -1198,15 +1204,482 @@ country_event = {
 		days = 1
 	}
 	
-	option = { # The historical route
+	option = { # The principal route
 		name = flavor_inc.30.a
+		ai_chance = { factor = 100 }
+		set_country_flag = new_inc_mission
+		swap_non_generic_missions = yes
+	}
+	option = { # The historical route
+		name = flavor_inc.30.b
+		ai_chance = { factor = 0 }
 		add_adm_power = 25
 		add_dip_power = 25
 		add_mil_power = 25
 	}
-	option = { # The principal route
-		name = flavor_inc.30.b
-		set_country_flag = new_inc_mission
-		swap_non_generic_missions = yes
+}	
+
+# Event to change gold provinces to iron
+province_event = {
+	id = flavor_inc.31
+	title = flavor_inc.31.t
+	desc = flavor_inc.31.d
+	picture = TRADE_GOODS_METALS_AND_MINING_EQUIPENT_eventPicture
+	goto = root
+	
+	trigger = {
+		is_colony = no
+		owner = {
+			any_owned_province = {
+				trade_goods = gold
+			}
+			religion = reformed
+			mission_completed = production_for_war
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 2
+	}
+	
+	option = {
+		name = "flavor_inc.31.a" # Let's proceed
+		ai_chance = { factor = 100 }
+		change_trade_goods = iron
+		add_building = weapons
+	}
+	option = {
+		name = "flavor_inc.31.b" # It doesn't seem necessary
+		ai_chance = { factor = 0 }
+		owner = {
+			add_mil_power = 25
+		}
+	}
+}
+
+# Event for war preparations
+country_event = {
+	id = flavor_inc.32
+	title = flavor_inc.32.t
+	desc = flavor_inc.32.d
+	picture = MILITARY_CAMP_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.32.a
+		ai_chance = { factor = 100 }
+	}
+}
+
+# Event for reform society
+country_event = {
+	id = flavor_inc.33
+	title = flavor_inc.33.t
+	desc = flavor_inc.33.d
+	picture = RELIGIOUS_CONVERSION_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.33.a
+		ai_chance = { factor = 100 }
+		add_treasury = 500
+	}
+}
+
+# Event for develop the capital
+country_event = {
+	id = flavor_inc.34
+	title = flavor_inc.34.t
+	desc = flavor_inc.34.d
+	picture = CITY_DEVELOPMENT_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.34.a
+		ai_chance = { factor = 100 }
+		add_treasury = 500
+	}
+}
+
+# Event for continous investment
+country_event = {
+	id = flavor_inc.35
+	title = flavor_inc.35.t
+	desc = flavor_inc.35.d
+	picture = CITY_VIEW_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.35.a
+		ai_chance = { factor = 100 }
+		add_treasury = 5000
+	}
+}
+
+# Event for reforming the army
+country_event = {
+	id = flavor_inc.36
+	title = flavor_inc.36.t
+	desc = flavor_inc.36.d
+	picture = LAND_MILITARY_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.36.a
+		ai_chance = { factor = 100 }
+	}
+}
+
+# Event for scholar association
+country_event = {
+	id = flavor_inc.37
+	title = flavor_inc.37.t
+	desc = flavor_inc.37.d
+	picture = LIBERUM_VETO_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.37.a
+		ai_chance = { factor = 100 }
+		change_government_reform_progress = 4000
+	}
+}
+
+# Event for extensive reform
+country_event = {
+	id = flavor_inc.38
+	title = flavor_inc.38.t
+	desc = flavor_inc.38.d
+	picture = UNIVERSITY_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.38.a
+		ai_chance = { factor = 100 }
+		change_government_reform_progress = 20000
+	}
+}
+
+# Event for expansion beyond the horizon
+country_event = {
+	id = flavor_inc.39
+	title = flavor_inc.39.t
+	desc = flavor_inc.39.d
+	picture = EUROPEAN_REFUGEES_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.39.a
+		ai_chance = { factor = 100 }
+	}
+}
+
+# Event for vast land
+country_event = {
+	id = flavor_inc.40
+	title = flavor_inc.40.t
+	desc = flavor_inc.40.d
+	picture = FARMING_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.40.a
+		ai_chance = { factor = 100 }
+	}
+}
+
+# Event for change to republic
+country_event = {
+	id = flavor_inc.41
+	title = flavor_inc.41.t
+	desc = flavor_inc.41.d
+	picture = STREET_SPEECH_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.41.a
+		ai_chance = { factor = 100 }
+	}
+}
+
+# Event for estate control
+country_event = {
+	id = flavor_inc.42
+	title = flavor_inc.42.t
+	desc = flavor_inc.42.d
+	picture = CONQUEST_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.42.a
+		ai_chance = { factor = 100 }
+	}
+}
+
+# Event for prosperous liberty
+country_event = {
+	id = flavor_inc.43
+	title = flavor_inc.43.t
+	desc = flavor_inc.43.d
+	picture = HOUSE_OF_TRADE_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.43.a
+		ai_chance = { factor = 100 }
+	}
+}
+
+# Event for production for war
+country_event = {
+	id = flavor_inc.44
+	title = flavor_inc.44.t
+	desc = flavor_inc.44.d
+	picture = PORTUGUESE_MERCHANTS_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.44.a
+		ai_chance = { factor = 100 }
+		add_treasury = 1500
+	}
+}
+
+# Event for long term policies
+country_event = {
+	id = flavor_inc.45
+	title = flavor_inc.45.t
+	desc = flavor_inc.45.d
+	picture = STREET_SPEECH_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.45.a
+		ai_chance = { factor = 100 }
+	}
+}
+
+# Event for reform the navy
+country_event = {
+	id = flavor_inc.46
+	title = flavor_inc.46.t
+	desc = flavor_inc.46.d
+	picture = BUCCANEERS_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.46.a
+		ai_chance = { factor = 100 }
+	}
+}
+
+# Event for facilitate the navy
+country_event = {
+	id = flavor_inc.47
+	title = flavor_inc.47.t
+	desc = flavor_inc.47.d
+	picture = HARBOUR_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.47.a
+		ai_chance = { factor = 100 }
+	}
+}
+
+# Event for entering iberia
+country_event = {
+	id = flavor_inc.48
+	title = flavor_inc.48.t
+	desc = flavor_inc.48.d
+	picture = SIEGE_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+
+	option = {
+		name = flavor_inc.48.a
+		ai_chance = { factor = 100 }
+	}
+}
+
+# Event for taking north america
+country_event = {
+	id = flavor_inc.49
+	title = flavor_inc.49.t
+	desc = flavor_inc.49.d
+	picture = EXPLORERS_eventPicture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+	}
+	
+	option = {
+		name = flavor_inc.49.a
+		ai_chance = { factor = 100 }
 	}
 }

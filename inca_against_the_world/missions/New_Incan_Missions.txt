@@ -1,7 +1,7 @@
 new_inc_mission_group = {
 	slot = 1
 	generic = no
-	ai = no
+	ai = yes
 	potential = {
 		OR = {
 			tag = CSU
@@ -10,19 +10,20 @@ new_inc_mission_group = {
 		has_country_flag = new_inc_mission
 		NOT = { map_setup = map_setup_random }
 	}
-	has_country_shield = yes
-	
+
 	war_preparations = {
 		icon = mission_assemble_an_army
-		required_missions = { }
 		position = 1
 		completed_by = 1450.1.1
-		
+		required_missions = {  }
 		trigger = {
 			army_size_percentage = 1
+			num_of_generals = 1
+			has_estate_privilege = estate_nobles_nobility_primacy
+			stability = 1
 		}
-		
 		effect = {
+			country_event = { id = flavor_inc.32 }
 			add_country_modifier = {
 				name = inca_continuous_preparation
 				duration = -1
@@ -31,44 +32,86 @@ new_inc_mission_group = {
 				name = inca_continuous_annexation
 				duration = -1
 			}
+			peru_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+			upper_peru_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
 			add_adm_power = 900
 			add_dip_power = 900
 			add_mil_power = 900
+			ai_weight = {
+				factor = 50
+			}
 		}
 	}
-
 	expansion_beyond_the_horizon = {
 		icon = mission_sw_yucca_plants
-		required_missions = { war_preparations }
 		position = 3
-
+		required_missions = { war_preparations }
 		trigger = {
-			tag = INC
+			army_size = 20
 			knows_country = TAI
 			stability = 1
 		}
-
 		effect = {
+			country_event = { id = flavor_inc.39 }
 			add_country_modifier = {
 				name = inca_set_migration_permissions
 				duration = -1
 			}
 		}
 	}
-
 	vast_lands = {
 		icon = mission_sw_against_the_desert
+		position = 4
 		required_missions = { expansion_beyond_the_horizon }
-		position = 5
-
 		trigger = {
+			army_size = 30
 			knows_country = TPA
+			stability = 1
 		}
-
 		effect = {
+			country_event = { id = flavor_inc.40 }
 			add_country_modifier = {
 				name = inca_establish_migration_legislation
 				duration = -1
+			}
+		}
+	}
+	around_colombia = {
+		icon = mission_sw_yucca_plants
+		position = 6
+		required_missions = {  }
+		provinces_to_highlight = {
+			region = colombia_region
+			NOT = { owned_by = ROOT }
+			has_port = yes
+		}
+		
+		trigger = {
+			colombia_region = {
+				type = all
+				owned_by = ROOT
+				has_port = yes
+			}
+		}
+		effect = {
+			colombia_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
 			}
 		}
 	}
@@ -77,7 +120,7 @@ new_inc_mission_group = {
 new_inc_mission_group_2 = {
 	slot = 2
 	generic = no
-	ai = no
+	ai = yes
 	potential = {
 		OR = {
 			tag = CSU
@@ -86,20 +129,21 @@ new_inc_mission_group_2 = {
 		has_country_flag = new_inc_mission
 		NOT = { map_setup = map_setup_random }
 	}
-	has_country_shield = yes
-	
+
 	reform_society = {
 		icon = mission_settlers_north_america
-		required_missions = {  }
 		position = 1
-		
+		required_missions = {  }
 		trigger = {
 			capital_scope = {
 				feudalism = 100
 			}
+			total_development = 50
+			stability = 1
+			has_estate_privilege = estate_church_religious_state
 		}
-		
 		effect = {
+			country_event = { id = flavor_inc.33 }
 			change_religion = reformed
 			add_country_modifier = {
 				name = inca_continuous_evangelism
@@ -108,41 +152,118 @@ new_inc_mission_group_2 = {
 			add_dip_power = 900
 			add_adm_power = 900
 			add_mil_power = 900
-			add_treasury = 500
 			add_stability = 2
 		}
 	}
-	
 	change_to_republic = {
 		icon = mission_scholar_officials
-		required_missions = { reform_society }
 		position = 3
-
+		required_missions = { reform_society scholars_association }
 		trigger = {
 			has_matching_religion = reformed
 			government = republic
+			adm_tech = 3
 		}
-		
 		effect = {
+			country_event = { id = flavor_inc.41 }
 			add_stability = 4
 			add_prestige = 140
 		}
 	}
-	
-	state_control = {
+	estate_control = {
 		icon = mission_high_income
-		required_missions = { change_to_republic }
 		position = 4
-		
+		required_missions = { change_to_republic }
 		trigger = {
 			stability = 1
 			crown_land_share = 28
+			army_size = 30
+			adm_tech = 3
 		}
-		
 		effect = {
+			country_event = { id = flavor_inc.42 }
 			add_country_modifier = {
 				name = inca_state_control
 				duration = -1
+			}
+		}
+	}
+	around_brazil = {
+		icon = mission_iberian_conquistador
+		position = 6
+		required_missions = {  }
+		provinces_to_highlight = {
+			region = brazil_region
+			NOT = { owned_by = ROOT }
+			has_port = yes
+		}
+		
+		trigger = {
+			brazil_region = {
+				type = all
+				owned_by = ROOT
+				has_port = yes
+			}
+		}
+		effect = {
+			brazil_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+	}
+	taking_guinea = {
+		icon = mission_sw_yucca_plants
+		position = 7
+		required_missions = { around_brazil }
+		provinces_to_highlight = {
+			area = gulf_of_guinea_area
+			NOT = { owned_by = ROOT }
+		}
+		
+		trigger = {
+			gulf_of_guinea_area = {
+				type = all
+				owned_by = ROOT
+			}
+		}
+		effect = {
+			guinea_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+	}
+	entering_iberia = {
+		icon = mission_cannons_firing
+		position = 8
+		required_missions = { taking_guinea around_north_america }
+		provinces_to_highlight = {
+			area = lower_andalucia_area
+			NOT = { owned_by = ROOT }
+		}
+		
+		trigger = {
+			army_size = 60
+			lower_andalucia_area = {
+				type = all
+				owned_by = ROOT
+			}
+		}
+		effect = {
+			country_event = { id = flavor_inc.48 }
+			iberia_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
 			}
 		}
 	}
@@ -151,7 +272,7 @@ new_inc_mission_group_2 = {
 new_inc_mission_group_3 = {
 	slot = 3
 	generic = no
-	ai = no
+	ai = yes
 	potential = {
 		OR = {
 			tag = CSU
@@ -160,18 +281,19 @@ new_inc_mission_group_3 = {
 		has_country_flag = new_inc_mission
 		NOT = { map_setup = map_setup_random }
 	}
-	has_country_shield = yes
-	
+
 	develop_the_capital = {
 		icon = mission_colonial
-		required_missions = {  }
 		position = 1
-		
+		required_missions = {  }
 		trigger = {
 			has_advisor = yes
+			has_estate_privilege = estate_burghers_land_of_commerce
+			stability = 1
+			total_development = 50
 		}
-		
 		effect = {
+			country_event = { id = flavor_inc.34 }
 			add_country_modifier = {
 				name = inca_continuous_development
 				duration = -1
@@ -180,64 +302,160 @@ new_inc_mission_group_3 = {
 				name = inca_rotation_of_advisors
 				duration = -1
 			}
-			add_adm_power = 900
 			add_dip_power = 900
+			add_adm_power = 900
 			add_mil_power = 900
-			add_treasury = 500
 		}
 	}
-	
 	scholars_association = {
 		icon = mission_alliances
-		required_missions = { reform_society develop_the_capital continuous_investment }
 		position = 2
-		
+		required_missions = { reform_society develop_the_capital continuous_investment }
 		trigger = {
 			has_advisor = yes
 			treasury = 200
+			stability = 1
+			total_development = 60
 		}
-		
 		effect = {
+			country_event = { id = flavor_inc.37 }
 			add_country_modifier = {
 				name = inca_scholars_association
 				duration = -1
 			}
-			change_government_reform_progress = 4000
 		}
 	}
-	
 	prosperous_liberty = {
 		icon = mission_dominate_home_trade_node
-		required_missions = { scholars_association production_for_war }
 		position = 4
-		
+		required_missions = { scholars_association production_for_war change_to_republic }
 		trigger = {
 			stability = 3
 			government = republic
+			dip_tech = 3
 		}
-		
 		effect = {
+			country_event = { id = flavor_inc.43 }
 			add_country_modifier = {
 				name = inca_prosperous_liberty
 				duration = -1
 			}
 		}
 	}
-	
 	extensive_reform = {
 		icon = mission_asian_trader
-		required_missions = { prosperous_liberty state_control vast_lands facilitate_the_navy long_term_policies }
-		position = 6
-		
+		position = 5
+		required_missions = { vast_lands state_control prosperous_liberty long_term_policies facilitate_the_navy }
 		trigger = {
 			stability = 2
+			dip_tech = 3
 		}
-		
 		effect = {
-			change_government_reform_progress = 20000
+			country_event = { id = flavor_inc.38 }
 			add_country_modifier = {
 				name = inca_extensive_reform
 				duration = -1
+			}
+		}
+	}
+	around_caribe = {
+		icon = mission_invade_island
+		position = 6
+		required_missions = {  }
+		provinces_to_highlight = {
+			area = windward_islands_area
+			NOT = { owned_by = ROOT }
+		}
+		
+		trigger = {
+			windward_islands_area = {
+				type = all
+				owned_by = ROOT
+			}
+		}
+		effect = {
+			carribeans_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+	}
+	around_north_america = {
+		icon = mission_se_medicine_wheel
+		position = 7
+		required_missions = { around_caribe }
+		provinces_to_highlight = {
+			area = great_valley_area
+			NOT = { owned_by = ROOT }
+		}
+		
+		trigger = {
+			great_valley_area = {
+				type = all
+				owned_by = ROOT
+			}
+		}
+		effect = {
+			southeast_america_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+	}
+	diverting_home = {
+		icon = mission_sea_battles
+		position = 9
+		required_missions = { entering_iberia taking_north_america }
+		provinces_to_highlight = {
+			province_id = 488
+			province_id = 756
+			province_id = 809
+		}
+		
+		trigger = {
+			488 = {
+				trade_share = {
+					country = ROOT
+					share = 75
+				}
+			}
+			756 = {
+				trade_share = {
+					country = ROOT
+					share = 75
+				}
+			}
+			809 = {
+				trade_share = {
+					country = ROOT
+					share = 75
+				}
+			}
+		}
+		effect = {
+			488 = {
+				add_province_modifier = {
+					name = "dominant_trade_hub"
+					duration = -1
+				}
+			}
+			756 = {
+				add_province_modifier = {
+					name = "dominant_trade_hub"
+					duration = -1
+				}
+			}
+			809 = {
+				add_province_modifier = {
+					name = "dominant_trade_hub"
+					duration = -1
+				}
 			}
 		}
 	}
@@ -246,7 +464,7 @@ new_inc_mission_group_3 = {
 new_inc_mission_group_4 = {
 	slot = 4
 	generic = no
-	ai = no
+	ai = yes
 	potential = {
 		OR = {
 			tag = CSU
@@ -255,64 +473,62 @@ new_inc_mission_group_4 = {
 		has_country_flag = new_inc_mission
 		NOT = { map_setup = map_setup_random }
 	}
-	has_country_shield = yes
-	
+
 	continuous_investment = {
 		icon = mission_early_game_buildings
-		required_missions = {  }
 		position = 1
-		
+		required_missions = {  }
 		trigger = {
 			has_institution = feudalism
 			is_bankrupt = no
+			stability = 1
+			treasury = 200
 		}
-		
 		effect = {
-			add_treasury = 5000
+			country_event = { id = flavor_inc.35 }
 			add_country_modifier = {
 				name = inca_continuous_investment
 				duration = -1
 			}
 			capital_scope = {
-    			change_trade_goods = paper
+				change_trade_goods = paper
 			}
 		}
 	}
-	
 	production_for_war = {
 		icon = mission_iroquois_warriors
-		required_missions = { continuous_investment scholars_association }
 		position = 3
-		
+		required_missions = { continuous_investment scholars_association }
 		trigger = {
+			tag = INC
 			has_institution = feudalism
 			is_bankrupt = no
-			manpower_percentage = 0.6
-			tag = INC
+			manpower_percentage = 0.5
+			stability = 1
+			army_size = 30
+			mil_tech = 3
+			total_development = 200
 		}
-		
 		effect = {
-			add_treasury = 1500
-			every_owned_province = { 
+			country_event = { id = flavor_inc.44 }
+			every_owned_province = {
 				limit = {
-        			trade_goods = gold
-    			}
+					trade_goods = gold
+				}
 				change_trade_goods = iron
-			}	
+			}
 		}
 	}
-	
 	long_term_policies = {
 		icon = mission_se_medicine_wheel
-		required_missions = { prosperous_liberty production_for_war }
-		position = 5
-		
+		position = 4
+		required_missions = { change_to_republic production_for_war }
 		trigger = {
-			tag = INC
-			mil_tech = 5
+			army_size = 20
+			army_tradition = 40
 		}
-		
 		effect = {
+			country_event = { id = flavor_inc.45 }
 			add_country_modifier = {
 				name = inca_long_term_policies
 				duration = -1
@@ -321,12 +537,150 @@ new_inc_mission_group_4 = {
 			change_unit_type = high_american
 		}
 	}
+	around_central_america = {
+		icon = mission_iberian_conquistador
+		position = 6
+		required_missions = {  }
+		provinces_to_highlight = {
+			area = honduras_area
+			area = nicaragua_area
+			area = costa_rica_area
+			NOT = { owned_by = ROOT }
+		}
+		
+		trigger = {
+			honduras_area = {
+				type = all
+				owned_by = ROOT
+			}
+			nicaragua_area = {
+				type = all
+				owned_by = ROOT
+			}
+			costa_rica_area = {
+				type = all
+				owned_by = ROOT
+			}
+		}
+		effect = {
+			central_america_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+	}
+	taking_mexico = {
+		icon = mission_hundred_years_war
+		position = 7
+		required_missions = { around_central_america }
+		provinces_to_highlight = {
+			area = oaxaca_area
+			NOT = { owned_by = ROOT }
+		}
+		
+		trigger = {
+			oaxaca_area = {
+				type = all
+				owned_by = ROOT
+			}
+		}
+		effect = {
+			mexico_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+	}
+	taking_north_america = {
+		icon = mission_sw_yucca_plants
+		position = 8
+		required_missions = { taking_mexico around_north_america  }
+		provinces_to_highlight = {
+			region = california_region
+			NOT = { owned_by = ROOT }
+			has_port = yes
+		}
+		
+		trigger = {
+			army_size = 50
+			california_region = {
+				type = all
+				owned_by = ROOT
+				has_port = yes
+			}
+		}
+		effect = {
+			country_event = { id = flavor_inc.49 }
+			california_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+			canada_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+			cascadia_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+			great_lakes_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+			hudson_bay_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+			mississippi_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+			northeast_america_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+			rio_grande_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+		}
+	}
 }
 
 new_inc_mission_group_5 = {
 	slot = 5
 	generic = no
-	ai = no
+	ai = yes
 	potential = {
 		OR = {
 			tag = CSU
@@ -335,56 +689,79 @@ new_inc_mission_group_5 = {
 		has_country_flag = new_inc_mission
 		NOT = { map_setup = map_setup_random }
 	}
-	has_country_shield = yes
-	
+
 	reforming_the_army = {
 		icon = mission_cossack_cavalry
-		required_missions = {  }
 		position = 1
-		
+		required_missions = {  }
 		trigger = {
-			army_tradition = 15
+			army_tradition = 20
+			total_development = 50
 		}
-		
 		effect = {
+			country_event = { id = flavor_inc.36 }
 			add_country_modifier = {
 				name = inca_army_reform
 				duration = -1
 			}
 		}
 	}
-	
 	reform_the_navy = {
 		icon = mission_establish_high_seas_navy
-		required_missions = { reforming_the_army }
 		position = 3
-		
+		required_missions = { reforming_the_army }
 		trigger = {
 			num_of_ports = 8
 		}
-		
 		effect = {
+			country_event = { id = flavor_inc.46 }
 			add_country_modifier = {
 				name = inca_navy_reform
 				duration = -1
 			}
 		}
 	}
-	
 	facilitate_the_navy = {
 		icon = mission_sea_battles
+		position = 4
 		required_missions = { reform_the_navy }
-		position = 5
-		
 		trigger = {
 			num_of_ports = 10
 			navy_size = 16
+			has_center_of_trade_of_level = 2
 		}
-		
 		effect = {
+			country_event = { id = flavor_inc.47 }
 			add_country_modifier = {
 				name = inca_facilitate_the_navy
 				duration = -1
+			}
+		}
+	}
+	around_la_plata = {
+		icon = mission_sw_yucca_plants
+		position = 6
+		required_missions = {  }
+		provinces_to_highlight = {
+			region = la_plata_region
+			NOT = { owned_by = ROOT }
+			has_port = yes
+		}
+		
+		trigger = {
+			la_plata_region = {
+				type = all
+				owned_by = ROOT
+				has_port = yes
+			}
+		}
+		effect = {
+			la_plata_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_permanent_claim = ROOT
 			}
 		}
 	}

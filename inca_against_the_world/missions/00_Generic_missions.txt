@@ -113,7 +113,7 @@ diplomatic_missions = {
 	generic = yes
 	
 	potential = {
-	   always = yes
+		always = yes
 	}
 	
 	building_alliances = {
@@ -276,14 +276,14 @@ diplomatic_missions = {
 	}
 }
 
- #3nd mission series:
+#3nd mission series:
 administrative_missions = {
 	slot = 4
 	
 	generic = yes
 	
 	potential = {
-	   always = yes
+		always = yes
 	}
 	high_income_mission = {
 		icon = mission_high_income
