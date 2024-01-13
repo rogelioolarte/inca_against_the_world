@@ -1,8 +1,8 @@
 # Inca against the world
 A mod for Europa Universalis.
 
-———  Inca against the world ———
 
+# Description:
 
 Second version of the mod. The Sapa Inca has been poisoned, some are suspicious, others follow him, he has made a decision. However, who inhabits the body of the sapa Inca is not who is supposed to be, a man from the 21st century is in charge of writing a new story. The Sapa Inca is gathering his subjects, whether they are loyal or not, he shows them new knowledge, he has become a guide and those closest are those capable of feats typical of the Sapa Inca.
 
