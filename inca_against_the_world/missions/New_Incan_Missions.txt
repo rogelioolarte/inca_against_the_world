@@ -345,10 +345,10 @@ new_inc_mission_group_3 = {
 	extensive_reform = {
 		icon = mission_asian_trader
 		position = 5
-		required_missions = { vast_lands state_control prosperous_liberty long_term_policies facilitate_the_navy }
+		required_missions = { vast_lands estate_control prosperous_liberty long_term_policies facilitate_the_navy }
 		trigger = {
 			stability = 2
-			dip_tech = 3
+			dip_tech = 6
 		}
 		effect = {
 			country_event = { id = flavor_inc.38 }

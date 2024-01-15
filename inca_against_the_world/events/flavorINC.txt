@@ -1230,16 +1230,18 @@ province_event = {
 	trigger = {
 		is_colony = no
 		owner = {
+			is_colonial_nation = yes
 			any_owned_province = {
 				trade_goods = gold
 			}
 			religion = reformed
 			mission_completed = production_for_war
+			num_of_cities = 5
 		}
 	}
 	
 	mean_time_to_happen = {
-		months = 2
+		months = 200
 	}
 	
 	option = {
