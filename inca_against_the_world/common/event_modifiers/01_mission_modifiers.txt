@@ -11715,7 +11715,11 @@ mam_disc_troops_modifier = {
 	is_mamluks_modifier = yes
 }
 
-## Modifiers for Inca Empire or Cuzco
+##############################################################
+##############################################################
+## Mission Modifiers for Inca Empire or Cuzco
+##############################################################
+##############################################################
 
 inca_continuous_preparation = {
 	army_tradition = 2
@@ -11728,20 +11732,20 @@ inca_continuous_annexation = {
 	culture_conversion_cost = -1
 	culture_conversion_time = -1
 	available_province_loot = -1
+	global_monthly_devastation = -0.2
 }
 
 inca_army_reform = {
-	army_tradition = 3
+	army_tradition = 2
 	manpower_recovery_speed = 0.2
-	land_maintenance_modifier = -0.2
-	war_exhaustion = -0.1
-	discipline = 0.1
-	free_leader_pool = 10
+	drill_decay_modifier = -0.33
+	global_regiment_recruit_speed = 0.2
 }
 
 inca_rotation_of_advisors = {
 	advisor_cost = -0.2
 	advisor_pool = 10
+	free_leader_pool = 10
 }
 
 inca_continuous_evangelism = {
@@ -11755,9 +11759,10 @@ inca_set_migration_permissions = {
 }
 
 inca_establish_migration_legislation = {
-	colony_development_boost = 3
 	colonists = 2
 	global_colonial_growth = 2000
+	colony_development_boost = 3
+	colony_cost_modifier = 0.5
 }
 
 inca_continuous_investment = {
@@ -11768,29 +11773,26 @@ inca_continuous_investment = {
 inca_state_control = {
 	monthly_fervor_increase = 25
 	all_estate_influence_modifier = -0.1
-	all_estate_loyalty_equilibrium = 0.2
-	allow_free_estate_privilege_revocation = yes
+	all_estate_loyalty_equilibrium = 0.1
+	state_governing_cost = 0.1
 }
 
 inca_continuous_development = {
-	all_power_cost = -0.2
 	global_trade_goods_size_modifier = 0.1
+	global_institution_spread = 0.2
 }
 
 inca_scholars_association = {
-	all_power_cost = -0.2
-	yearly_innovativeness = 0.2
-	global_institution_spread = 0.5
-	free_policy = 5
+	all_power_cost = -0.5
 	possible_policy = 3
+	free_policy = 5
 }
 
 inca_prosperous_liberty = {
-	all_power_cost = -0.1
 	global_autonomy = -0.1
-	years_of_nationalism = -5
 	candidate_random_bonus = 2
-	envoy_travel_time = -0.2
+	envoy_travel_time = -0.5
+	global_unrest = 1
 }
 
 inca_extensive_reform = {
@@ -11799,24 +11801,25 @@ inca_extensive_reform = {
 	yearly_absolutism = 0.4
 	administrative_efficiency = 0.1
 	allow_client_states = yes
+	state_governing_cost = 0.1
 }
 
 inca_long_term_policies = {
-	great_project_upgrade_time = -0.5
-	diplomats = 3
+	years_of_nationalism = -5
 	national_focus_years = -10
-	liberty_desire_from_subject_development = -0.5
+	liberty_desire_from_subject_development = -0.2
+	diplomats = 3
 	diplomatic_upkeep = 10
 }
 
 inca_navy_reform = {
-	navy_tradition = 3
+	navy_tradition = 1
 	sailors_recovery_speed = 0.2
-	max_flagships = 2
+	max_flagships = 1
 }
 
 inca_facilitate_the_navy = {
-	navy_tradition = 2
+	navy_tradition = 1
 	naval_morale = 0.2
 	naval_attrition = -0.2
 }

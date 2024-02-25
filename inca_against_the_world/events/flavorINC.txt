@@ -18,7 +18,6 @@ normal_or_historical_nations = yes
 #	fire_only_once = yes
 #	
 #	trigger = {
-#		NOT = { mission_completed = reform_society }
 #		tag = INC
 #		is_year = 1500 
 #		NOT = { is_year = 1600 }
@@ -111,6 +110,7 @@ country_event = {
 		tag = CSU
 		has_ruler = "Pachacuti"
 		NOT = { is_year = 1450 }
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	mean_time_to_happen = {
@@ -123,9 +123,9 @@ country_event = {
 			country_event = { id = flavor_inc.3 days = 185 }
 		}
 		add_years_of_income = 0.25
-		add_adm_power = 100
-		add_dip_power = 100
-		add_mil_power = 100
+		add_adm_power = 75
+		add_dip_power = 75
+		add_mil_power = 75
 	}
 }
 
@@ -141,6 +141,7 @@ country_event = {
 	
 	trigger = {
 		owns = 807 #Though losing this is very unlikely.
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	option = { #Let us create a worthy capital!
@@ -154,6 +155,8 @@ country_event = {
 			}
 		}
 		add_prestige = 10
+		add_adm_power = -25
+		add_dip_power = -25
 	}
 	option = { #Our resources are better used for other things.
 		name = flavor_inc.3.b
@@ -174,6 +177,7 @@ country_event = {
 		tag = CSU
 		had_country_flag = { flag = inc_cusco_began days = 7300 }
 		owns = 807
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	mean_time_to_happen = {
@@ -261,7 +265,7 @@ country_event = {
 	trigger = {
 		tag = INC
 		num_of_cities = 8
-		NOT = { mission_completed = reform_society }
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	mean_time_to_happen = {
@@ -306,7 +310,7 @@ country_event = {
 		owns = 812 #Chanchan
 		owns = 2821 #Piwra
 		owns = 2822 #Tucume
-		NOT = { mission_completed = reform_society }
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	mean_time_to_happen = {
@@ -358,7 +362,7 @@ country_event = {
 			2821 = { culture = chimuan } #Piwra
 			2822 = { culture = chimuan } #Tucume
 		}
-		NOT = { mission_completed = reform_society }
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	immediate = {
@@ -446,7 +450,7 @@ country_event = {
 				controlled_by = REB
 			}
 		}
-		NOT = { mission_completed = reform_society }
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	mean_time_to_happen = {
@@ -581,8 +585,8 @@ country_event = {
 		any_owned_province = {
 			has_province_modifier = inc_smallpox_outbreak
 		}
-		has_regency = no
-		NOT = { mission_completed = reform_society }
+		has_regency = 
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	mean_time_to_happen = {
@@ -688,7 +692,7 @@ country_event = {
 			has_country_flag = inc_civil_war_support_huascar
 			has_country_flag = inc_civil_war_support_atahualpa
 		}
-		NOT = { mission_completed = reform_society }
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	mean_time_to_happen = {
@@ -734,7 +738,7 @@ country_event = {
 				controlled_by = REB
 			}
 		}
-		NOT = { mission_completed = reform_society }
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	mean_time_to_happen = {
@@ -775,7 +779,7 @@ country_event = {
 				has_regency = no
 			}
 		}
-		NOT = { mission_completed = reform_society }
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	mean_time_to_happen = {
@@ -984,7 +988,7 @@ country_event = {
 		has_heir = yes
 		has_regency = no
 		heir_age = 15
-		NOT = { mission_completed = reform_society }
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	mean_time_to_happen = {
@@ -1016,7 +1020,7 @@ country_event = {
 		tag = INC
 		has_heir_flag = inc_pacific_exploration
 		had_heir_flag = { flag = inc_pacific_exploration days = 270 }
-		NOT = { mission_completed = reform_society }
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	immediate = {
@@ -1056,7 +1060,7 @@ country_event = {
 		tag = INC
 		has_heir_flag = inc_pacific_exploration
 		had_heir_flag = { flag = inc_pacific_exploration days = 270 }
-		NOT = { mission_completed = reform_society }
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	immediate = {
@@ -1134,7 +1138,7 @@ country_event = {
 		809 = {
 			has_province_modifier = inti_pachamac_oracle
 		}
-		NOT = { mission_completed = reform_society }
+		NOT = { has_country_flag = new_inc_mission }
 	}
 	
 	mean_time_to_happen = {
@@ -1179,10 +1183,13 @@ country_event = {
 	}
 	
 }
+
 ##############################################################
-# Flavor Events for the Incas with Mod Against the World
+##############################################################
+## Flavor Events for the Incas with Mod Against the World
 #
-# Scripted by Sapa Inca Pachacutec
+## Scripted by Sapa Inca Pachacutec
+##############################################################
 ##############################################################
 
 # First event to change missions for Cuzco
@@ -1197,6 +1204,7 @@ country_event = {
 	trigger = {
 		tag = CSU
 		has_ruler = "Pachacuti"
+		is_year = 1444
 		NOT = { is_year = 1450 }
 	}
 	
@@ -1230,18 +1238,17 @@ province_event = {
 	trigger = {
 		is_colony = no
 		owner = {
-			is_colonial_nation = yes
+			tag = INC
 			any_owned_province = {
 				trade_goods = gold
 			}
 			religion = reformed
 			mission_completed = production_for_war
-			num_of_cities = 5
 		}
 	}
 	
 	mean_time_to_happen = {
-		months = 200
+		months = 50
 	}
 	
 	option = {
@@ -1258,6 +1265,11 @@ province_event = {
 		}
 	}
 }
+
+
+##############################################################
+# Events for Specific Missions
+##############################################################
 
 # Event for war preparations
 country_event = {
@@ -1640,12 +1652,12 @@ country_event = {
 	}
 }
 
-# Event for entering iberia
+# Event for war plans
 country_event = {
 	id = flavor_inc.48
 	title = flavor_inc.48.t
 	desc = flavor_inc.48.d
-	picture = SIEGE_eventPicture
+	picture = DEBATE_REPUBLICAN_eventPicture
 	
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -1656,32 +1668,9 @@ country_event = {
 			tag = INC
 		}
 	}
-
+	
 	option = {
 		name = flavor_inc.48.a
-		ai_chance = { factor = 100 }
-	}
-}
-
-# Event for taking north america
-country_event = {
-	id = flavor_inc.49
-	title = flavor_inc.49.t
-	desc = flavor_inc.49.d
-	picture = EXPLORERS_eventPicture
-	
-	fire_only_once = yes
-	is_triggered_only = yes
-
-	trigger = {
-		OR = {
-			tag = CSU
-			tag = INC
-		}
-	}
-	
-	option = {
-		name = flavor_inc.49.a
 		ai_chance = { factor = 100 }
 	}
 }

@@ -6208,6 +6208,47 @@ MPC_ideas = {
 	}
 }
 
+CSU_ideas = {
+	start = {
+		idea_cost = -0.1
+		land_forcelimit_modifier = 0.2
+	}
+	bonus = {
+		max_hostile_attrition = 1
+	}
+	trigger = {
+		OR = {
+			tag = CSU
+			tag = INC
+		}
+		
+	}
+	free = yes		#will be added at load.
+		
+	machu_picchu = {
+		prestige = 1
+	}
+	mitma = { #Increased Obligations on local chiefs
+		development_cost = -0.1
+	}
+	quipu = {
+		global_tax_modifier = 0.1
+	}
+	drafted_hatun_runas = {
+		discipline = 0.025
+		global_manpower_modifier = 0.1
+	}
+	mita_system = {
+		build_cost = -0.1
+	}
+	llama_michis = {
+		production_efficiency = 0.1
+	}
+	tambo = {
+		land_attrition = -0.10
+	}
+}
+
 INC_ideas = {
 	start = {
 		infantry_power = 0.1
@@ -6217,9 +6258,8 @@ INC_ideas = {
 		max_hostile_attrition = 2
 	}
 	trigger = {
-		OR = {
-			tag = INC
-		}
+		tag = INC
+		has_country_flag = new_inc_mission
 	}
 	free = yes		#will be added at load.
 		
