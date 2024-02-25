@@ -1,11 +1,12 @@
 # Inca against the world
 A mod for Europa Universalis.
 
+"Thrid version of the mod"
 
 # Description:
+A year ago, The Sapa Inca Pachacuti was poisoned, everyone present was stunned, his personal guard could only take him to his personal room since he was still breathing, for three days, the gossips and whispers in Cuzco were anxious. On the fourth day, the Sapa Inca Pachacuti woke up. There was a fleeting rumor that the person who woke up was not the Sapa Inca. Despite this, during the seventh day there were no longer any rumors of any kind about his poisoning, since the prolonged meetings with his men, The extensive lessons given to all types of people, the disappearance of several nobles and priests spread much more gossip throughout the land. The Sapa Inca is no longer the same, he does not have the same look some would say, others would comment on each new change in his actions, as if the light long sleep has improved him.
 
-Second version of the mod. The Sapa Inca has been poisoned, some are suspicious, others follow him, he has made a decision. However, who inhabits the body of the sapa Inca is not who is supposed to be, a man from the 21st century is in charge of writing a new story. The Sapa Inca is gathering his subjects, whether they are loyal or not, he shows them new knowledge, he has become a guide and those closest are those capable of feats typical of the Sapa Inca.
-
+-- The truth is that whoever resides in the consciousness of the Sapa Inca is a man of the 21st century, widely endowed with enough knowledge to terrify even someone from his own time. --
 
 
 # Features:
