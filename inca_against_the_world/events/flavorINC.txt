@@ -1238,17 +1238,28 @@ province_event = {
 	trigger = {
 		is_colony = no
 		owner = {
-			tag = INC
+			NOT = { has_country_flag = iron_discovered }
 			any_owned_province = {
 				trade_goods = gold
 			}
 			religion = reformed
 			mission_completed = production_for_war
 		}
+		NOT = { has_building = plantations }
+		NOT = { has_building = tradecompany }
+		num_free_building_slots = 1
 	}
 	
 	mean_time_to_happen = {
 		months = 2000
+	}
+	
+	immediate = {
+		hidden_effect = {
+			owner = {
+				set_country_flag = iron_discovered
+			}
+		}
 	}
 	
 	option = {
