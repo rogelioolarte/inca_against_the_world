@@ -276,7 +276,7 @@ diplomatic_missions = {
 	}
 }
 
-#3nd mission series:
+ #3nd mission series:
 administrative_missions = {
 	slot = 4
 	

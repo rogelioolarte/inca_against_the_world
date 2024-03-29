@@ -11751,6 +11751,7 @@ inca_rotation_of_advisors = {
 inca_continuous_evangelism = {
 	global_missionary_strength = 1
 	missionaries = 3
+	missionary_maintenance_cost = 1
 }
 
 inca_set_migration_permissions = {
@@ -11774,7 +11775,7 @@ inca_state_control = {
 	monthly_fervor_increase = 25
 	all_estate_influence_modifier = -0.1
 	all_estate_loyalty_equilibrium = 0.1
-	state_governing_cost = 0.1
+	state_maintenance_modifier = 0.1
 }
 
 inca_continuous_development = {
@@ -11801,7 +11802,7 @@ inca_extensive_reform = {
 	yearly_absolutism = 0.4
 	administrative_efficiency = 0.1
 	allow_client_states = yes
-	state_governing_cost = 0.1
+	state_maintenance_modifier  = 0.1
 }
 
 inca_long_term_policies = {

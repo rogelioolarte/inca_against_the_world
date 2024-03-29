@@ -129,24 +129,6 @@ country_decisions = {
 				}
 				add_permanent_claim = INC
 			}
-			la_plata_region = {
-				limit = {
-					NOT = { owned_by = ROOT }
-				}
-				add_permanent_claim = INC
-			}
-			colombia_region = {
-				limit = {
-					NOT = { owned_by = ROOT }
-				}
-				add_permanent_claim = INC
-			}
-			brazil_region = {
-				limit = {
-					NOT = { owned_by = ROOT }
-				}
-				add_permanent_claim = INC
-			}
 			add_prestige = 25
 			if = {
 				limit = {

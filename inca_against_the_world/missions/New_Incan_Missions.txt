@@ -20,8 +20,8 @@ new_inc_mission_group = {
 			army_size_percentage = 1
 			num_of_generals = 1
 			stability = 1
-			is_enemy = WKA
-			is_enemy = CLA
+			is_rival = WKA
+			is_rival = CLA
 		}
 		effect = {
 			country_event = { id = flavor_inc.32 }
@@ -445,10 +445,11 @@ new_inc_mission_group_3 = {
 		position = 5
 		required_missions = { estate_control extensive_reform }
 		trigger = {
-			stability = 3
+			stability = 2
+			dip_tech = 7
 			government = republic
-			has_idea_group = innovativeness_ideas
-			has_idea = expanded_policies
+			has_idea_group = exploration_ideas
+			has_idea = global_empire
 		}
 		effect = {
 			country_event = { id = flavor_inc.43 }
@@ -467,19 +468,19 @@ new_inc_mission_group_3 = {
 			488 = {
 				trade_share = {
 					country = ROOT
-					share = 75
+					share = 60
 				}
 			}
 			756 = {
 				trade_share = {
 					country = ROOT
-					share = 75
+					share = 60
 				}
 			}
 			809 = {
 				trade_share = {
 					country = ROOT
-					share = 75
+					share = 60
 				}
 			}
 		}
@@ -598,9 +599,9 @@ new_inc_mission_group_4 = {
 		required_missions = { estate_control production_for_war facilitate_the_navy }
 		trigger = {
 			stability = 2
-			dip_tech = 5
-			has_idea_group = exploration_ideas
-			has_idea = global_empire
+			adm_tech = 5
+			has_idea_group = innovativeness_ideas
+			has_idea = expanded_policies
 		}
 		effect = {
 			country_event = { id = flavor_inc.38 }
@@ -616,11 +617,30 @@ new_inc_mission_group_4 = {
 		position = 6
 		required_missions = { prosperous_liberty long_term_policies extensive_reform }
 		trigger = {
+			current_age = age_of_revolutions
 			is_revolution_target = yes
-			army_size = 430
+			is_great_power = yes
+			has_institution = enlightenment
+			army_size = 500
+			total_development = 1000
 		}
 		effect = {
 			add_stability = -6
+			brazil_region = {
+				set_revolution_in_province = yes
+			}
+			peru_region = {
+				set_revolution_in_province = yes
+			}
+			upper_peru_region = {
+				set_revolution_in_province = yes
+			}
+			la_plata_region = {
+				set_revolution_in_province = yes
+			}
+			colombia_region = {
+				set_revolution_in_province = yes
+			}
 			ai_weight = { factor = 20 }
 		}
 	}
