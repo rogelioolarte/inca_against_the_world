@@ -618,11 +618,13 @@ new_inc_mission_group_4 = {
 		required_missions = { prosperous_liberty long_term_policies extensive_reform }
 		trigger = {
 			current_age = age_of_revolutions
-			is_revolution_target = yes
 			is_great_power = yes
 			has_institution = enlightenment
-			army_size = 500
-			total_development = 1000
+			army_size = 1000
+			total_development = 11000
+			any_owned_province = {
+				has_revolution_in_province = yes
+			}
 		}
 		effect = {
 			add_stability = -6
